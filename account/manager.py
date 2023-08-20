@@ -26,12 +26,7 @@ class CustomUserManager(BaseUserManager):
         Raises
             ValueError: If email is not provided.
         """
-        # Ensure that the user is either a customer or an employee, but not both
-        is_customer = kwargs.pop("is_customer", False)
-        is_employee = kwargs.pop("is_employee", False)
 
-        if is_customer and is_employee:
-            raise ValueError("A user cannot be both a customer and an employee")
         # check if email is provided
         if not email:
             raise ValueError("The email must be set")

@@ -10,11 +10,8 @@ User = get_user_model()
 @receiver(signal=post_save, sender=User)
 def save_tables(sender, instance, created, **kwargs):
     if created:
-        profile = Profile.objects.create(user=instance)
-        profile.save()
+        Profile.objects.create(user=instance)
         if instance.is_customer:
-            customer = Customer.objects.create(user=instance)
-            customer.save()
+            Customer.objects.get_or_create(user=instance)
         elif instance.is_employee:
-            employee = Employee.objects.create(user=instance)
-            employee.save()
+            Employee.objects.get_or_create(user=instance)
