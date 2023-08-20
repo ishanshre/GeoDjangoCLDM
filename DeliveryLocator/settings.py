@@ -45,11 +45,13 @@ INSTALLED_APPS = [
     "corsheaders",
     "rest_framework",
     "rest_framework_gis",
+    "django_filters",
     "leaflet",
     "phonenumber_field",
     "debug_toolbar",
     "crispy_forms",
     "crispy_bootstrap5",
+    "drf_yasg",
     # local apps
     "account.apps.AccountConfig",
     "location.apps.LocationConfig",
@@ -166,7 +168,8 @@ LEAFLET_CONFIG = {
 # Rest framework configuration
 REST_FRAMEWORK = {
     "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.LimitOffsetPagination",
-    "PAGE_SIZE": 20,
+    "PAGE_SIZE": 10,
+    "DEFAULT_FILTER_BACKENDS": ["django_filters.rest_framework.DjangoFilterBackend"],
 }
 
 # CORS configuration
