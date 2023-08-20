@@ -1,7 +1,7 @@
 # Retrive All Delivery Locations
 
 ## Descrption:
-    This API endpoint, avaliable at 'localhost:8000/api/v1/delivery-locations', is designed to retrieve a list of all delivery locations stored in the system. It provides access to comprehensive information about each delivery location, including its name, geographic coordinates, and additional details.
+    - This API endpoint, avaliable at 'localhost:8000/api/v1/delivery-locations', is designed to retrieve a list of all delivery locations stored in the system. It provides access to comprehensive information about each delivery location, including its name, geographic coordinates, and additional details.
 
 ### Usuage:
     - HTTP Method: GET
