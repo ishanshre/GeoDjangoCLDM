@@ -2,8 +2,14 @@
 This module contains forms related to User creation, change and authentication
 """
 
+from typing import Any
+
 from django.contrib.auth import get_user_model
-from django.contrib.auth.forms import UserChangeForm, UserCreationForm
+from django.contrib.auth.forms import (
+    AuthenticationForm,
+    UserChangeForm,
+    UserCreationForm,
+)
 
 User = get_user_model()
 
@@ -52,3 +58,25 @@ class CustomUserChangeForm(UserChangeForm):
 
         model = User
         fields = ["username", "email", "full_name", "is_customer", "is_employee"]
+
+
+class UserLoginForm(AuthenticationForm):
+    """
+    LoginForm that inherits builtin AuthenticationForm
+    """
+
+    class Meta:
+        model = User
+        fields = ["username", "password"]
+
+
+class CustomerSignUp(CustomUserCreationForm):
+    class Meta(CustomUserCreationForm.Meta):
+        model = User
+        fields = ["username", "email", "full_name"]
+
+    def save(self):
+        user = super().save(commit=False)
+        user.is_customer = True
+        user.save()
+        return user
