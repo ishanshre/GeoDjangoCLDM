@@ -40,11 +40,15 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "django.contrib.gis",
     # third party apps
     "corsheaders",
     "rest_framework",
     "rest_framework_gis",
     "leaflet",
+    "phonenumber_field",
+    # local apps
+    "account.apps.AccountConfig",
 ]
 
 MIDDLEWARE = [
@@ -178,3 +182,5 @@ CORS_ALLOW_HEADERS = [
     "x-csrftoken",
     "x-requested-with",
 ]
+
+AUTH_USER_MODEL = "account.User"
