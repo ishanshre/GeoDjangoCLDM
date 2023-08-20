@@ -139,7 +139,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = "/static/"
-STATIC_ROOT = os.path.join(BASE_DIR, "static")
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static"),
+]
 
 MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
@@ -153,7 +155,7 @@ GDAL_LIBRARY_PATH = "/usr/lib/libgdal.so"  # Path to the GDAL library
 
 # Leaflet configuration
 LEAFLET_CONFIG = {
-    "DEFAULT_CENTER": (-1.94, 29.87),
+    "DEFAULT_CENTER": (27.671671, 85.286865),
     "DEFAULT_ZOOM": 8,
     "MAX_ZOOM": 20,
     "MIN_ZOOM": 3,
@@ -208,3 +210,8 @@ INTERNAL_IPS = [
 LOGIN_REDIRECT_URL = "location:index"
 LOGOUT_REDIRECT_URL = "account:login"
 LOGIN_URL = "account:login"
+
+
+AUTHENTICATION_BACKENDS = [
+    "account.backends.CustomAuthBackend",
+]

@@ -3,6 +3,54 @@
 
 
 {% block body %}
+<div class="contianer">
+    <div class="d-flex justify-content-center align-item-center">
+        <h1 class="text-center p-5 mb-10">Customer Name: {{request.user.full_name}}</h1>
+        <div class="d-flex justify-content-center align-items-center">
+            <a href="{% url 'location:location_create' %}" class="btn btn-primary">Add</a>
+        </div>
+    </div>
+    <div class="d-flex justify-content-center align-items-center">
+        <div>
+            <table class="table table-striped-columns table-hover">
+                <thead>
+                    <tr>
+                        <th>S.N.</th>
+                        <th>Name</th>
+                        <th>Latitude</th>
+                        <th>Longitude</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for location in locations %}
+                    <tr class="
+                    {% if location.is_primary %}
+                    table-active        
+                    {% endif %}
+                    ">
+                        <td>{{forloop.counter}}</td>
+                        <td>{{location.name}}{% if location.is_primary %}
+                            (Default)
+                            {% endif %}</td>
+                        <td>{{location.location.y}}</td>
+                        <td>{{location.location.x}}</td>
+                        <td>
+                            <a href="{{location.get_absolute_url}}" class="btn btn-secondary">Detail</a>
+                            <a href="{% url 'location:location_delete' location.slug %}"
+                                class="btn btn-danger">Delete</a>
+                            <a href="{% url 'location:location_update' location.slug %}"
+                                class="btn btn-danger">Update</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
 
-
+                </tbody>
+            </table>
+            <div class="d-flex justify-content-center align-content-center">
+                {% include "layout/pagination.html" %}
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock body %}

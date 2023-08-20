@@ -1,0 +1,17 @@
+{% extends 'layout/base.html' %}
+{% load crispy_forms_tags %}
+{% load leaflet_tags %}
+
+{% block title %}Update Location Delivery{% endblock title %}
+
+{% block body %}
+<div class="container w-50 m-auto">
+    <h2 class="text-center">Update Location: {{location.name}}</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <input type="submit" value="Update" class="btn btn-primary">
+    </form>
+</div>
+
+{% endblock body %}

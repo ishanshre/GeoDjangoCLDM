@@ -90,9 +90,12 @@ class CustomUserManager(BaseUserManager):
         kwargs.setdefault("is_staff", True)
         kwargs.setdefault("is_superuser", True)
         kwargs.setdefault("is_employee", True)
+        kwargs.setdefault("is_customer", True)
         # check that is_employee, is_staff and is_superuser are not set to False for super user
         if kwargs.get("is_employee") is not True:
             raise ValueError("Superuser must set is_employee=True")
+        if kwargs.get("is_customer") is not True:
+            raise ValueError("Superuser must set is_customer=True")
         if kwargs.get("is_staff") is not True:
             raise ValueError("Superuser must set is_staff=True")
         if kwargs.get("is_superuser") is not True:

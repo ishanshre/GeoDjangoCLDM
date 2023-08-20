@@ -71,7 +71,7 @@ class Customer(models.Model):
 class Employee(geomodels.Model):
     lat = geomodels.FloatField(null=True, blank=True)
     lon = geomodels.FloatField(null=True, blank=True)
-    point = geomodels.PointField()
+    point = geomodels.PointField(null=True, blank=True)
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="employee")
 
     def save(self, *args, **kwargs):
